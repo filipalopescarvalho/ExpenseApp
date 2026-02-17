@@ -1,0 +1,12 @@
+services:
+  frontend:
+    build: ./expense-tracker-frontend
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+
+  backend:
+    build: ./expense-tracker-backend
+    ports:
+      - "5001:5001"
