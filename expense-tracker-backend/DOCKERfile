@@ -1,12 +1,20 @@
+# Use official Node.js LTS image
 FROM node:20-alpine
 
+# Set working directory
 WORKDIR /app
 
-COPY package*.json ./
+# Copy package files
+COPY package.json package-lock.json ./
+
+# Install dependencies
 RUN npm install
 
+# Copy backend code
 COPY . .
 
-EXPOSE 5173
+# Expose backend port
+EXPOSE 5001
 
-CMD ["npm", "run", "dev", "--", "--host"]
+# Start backend server
+CMD ["npm", "start"]
