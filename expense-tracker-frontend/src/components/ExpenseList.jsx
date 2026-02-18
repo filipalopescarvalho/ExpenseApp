@@ -5,22 +5,24 @@
 import React from "react";
 
 function ExpenseList({ expenses, onEditChange, onDeleteExpense, onEditExpense, onSaveExpense }) {
- // Render the list of expenses, showing input fields for editing and buttons for actions
+  // Render the list of expenses
+  // Shows either inline editing fields or static display for each expense
   return (
     <div className="expense-list">
       <h2>Expenses List</h2>
 
+      {/* Show message if no expenses exist */}
       {expenses.length === 0 ? (
         <p>No expenses added yet.</p>
       ) : (
         <ul>
           {expenses.map((expense) => (
             <li key={expense.id} className="expense-item">
-
-// If the expense is in editing mode, show input fields and Save button
               
+              {/* If expense is being edited, show input fields */}
               {expense.isEditing ? (
                 <>
+                  {/* Title input field */}
                   <input
                     type="text"
                     value={expense.title || ""}
@@ -28,6 +30,8 @@ function ExpenseList({ expenses, onEditChange, onDeleteExpense, onEditExpense, o
                       onEditChange(expense.id, "title", e.target.value)
                     }
                   />
+
+                  {/* Amount input field */}
                   <input
                     type="number"
                     value={expense.amount ?? 0}
@@ -35,6 +39,8 @@ function ExpenseList({ expenses, onEditChange, onDeleteExpense, onEditExpense, o
                       onEditChange(expense.id, "amount", e.target.value)
                     }
                   />
+
+                  {/* Save button for edited expense */}
                   <div className="button-group">
                     <button
                       className="save"
@@ -50,14 +56,15 @@ function ExpenseList({ expenses, onEditChange, onDeleteExpense, onEditExpense, o
                   </div>
                 </>
               ) : (
-
-// Display expense details with Edit and Delete buttons
+                // Display mode: show expense title and amount with Edit/Delete buttons
                 <>
                   <span>
                     {expense.title || "Untitled"} - €{expense.amount ?? 0}
                   </span>
                   <div className="button-group">
+                    {/* Enable editing mode */}
                     <button onClick={() => onEditExpense(expense.id)}>Edit</button>
+                    {/* Delete expense */}
                     <button onClick={() => onDeleteExpense(expense.id)}>Delete</button>
                   </div>
                 </>

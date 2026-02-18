@@ -11,10 +11,8 @@ function ExpenseSummary({ expenses = [] }) {
     <div className="card expense-summary">
       <h2>Expense Summary</h2>
 
-//  Display total expenses, ensuring it shows 0 if there are no expenses or amounts are missing
       <p>Total Expenses: €{total.toFixed(2)}</p>
 
-// Show detailed list of expenses, handling missing titles and amounts 
       <ul>
         {expenses.map((exp) => (
           <li key={exp.id}>
