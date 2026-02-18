@@ -18,6 +18,8 @@ const db = new sqlite3.Database("./expenses.db", (err) => {
   }
 });
 
+// Create expenses table if it doesn't exist
+
 db.run(`
   CREATE TABLE IF NOT EXISTS expenses (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -109,7 +111,7 @@ app.delete("/expenses/:id", (req, res) => {
   });
 });
 
-// ** SERVER START **
+// ** START SERVER **
 
 // To only start server if not running tests
 if (process.env.NODE_ENV !== "test") {

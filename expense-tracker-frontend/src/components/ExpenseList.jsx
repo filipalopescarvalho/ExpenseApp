@@ -1,6 +1,11 @@
+// ** EXPENSE LIST COMPONENT **
+// Displays a list of expenses with options to edit, save, or delete.
+// Handles both display mode and inline editing mode for each expense.
+
 import React from "react";
 
 function ExpenseList({ expenses, onEditChange, onDeleteExpense, onEditExpense, onSaveExpense }) {
+ // Render the list of expenses, showing input fields for editing and buttons for actions
   return (
     <div className="expense-list">
       <h2>Expenses List</h2>
@@ -11,6 +16,9 @@ function ExpenseList({ expenses, onEditChange, onDeleteExpense, onEditExpense, o
         <ul>
           {expenses.map((expense) => (
             <li key={expense.id} className="expense-item">
+
+// If the expense is in editing mode, show input fields and Save button
+              
               {expense.isEditing ? (
                 <>
                   <input
@@ -42,6 +50,8 @@ function ExpenseList({ expenses, onEditChange, onDeleteExpense, onEditExpense, o
                   </div>
                 </>
               ) : (
+
+// Display expense details with Edit and Delete buttons
                 <>
                   <span>
                     {expense.title || "Untitled"} - €{expense.amount ?? 0}
